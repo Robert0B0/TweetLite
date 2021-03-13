@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 
 {% block head_title %} 
-Some rando stuff
+V0.1
 {% endblock head_title%}
 
 {% block content %} 
@@ -75,19 +75,23 @@ Some rando stuff
               handleTweetFormError(contentErrorMsg, true)
           } else {
               alert('An error accured. Please try again')
+              console.log(xhr.response)
           }
         } else if (xhr.status === 500){
-            alert('An error accured. Please try again')
+            alert('An error accured. Please try again later')
+            console.log(xhr.response)
         }
       } else if (xhr.status === 401) {
           alert('You must login!')
           window.location.href = '/login/'
       } else if (xhr.status === 500) {
           alert('There was a server error. Please try again')
+          console.log(xhr.response)
       }
     }
     xhr.onerror = function() {
       alert("An error accured. Please try again later.")
+      console.log(xhr.response)
     }
     xhr.send(myFormData)
   }
@@ -107,7 +111,7 @@ Some rando stuff
     xhr.open(method, url)
     xhr.onload = function() {
       const serverResponse = xhr.response
-      let listedItems = serverResponse.response
+      let listedItems = serverResponse
       let finalTweetStr = ''
       let i;
       for (i = 0 ; i < listedItems.length; i++) {
