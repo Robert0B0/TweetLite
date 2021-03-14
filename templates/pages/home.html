@@ -5,7 +5,9 @@
 	</div>
 </div>
 
-<div class="row mb-5">
+<div class="row" id="tweet_lite"></div>
+
+<div class="row mb-5 d-none">
 	<div class="col-md-4 mx-auto col-10">
 		<form class="form" id="tweet-create-form" method="POST" action="/create-tweet/">
 			{% csrf_token %}
@@ -24,8 +26,6 @@
 		</form>
 	</div>
 </div>
-
-<div class="row" id="tweets"></div>
 
 <script>
 	function handleTweetFormError(msg, display) {
@@ -154,8 +154,8 @@
 		xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 		xhr.setRequestHeader("x-CSRFTOKEN", csrftoken);
 		xhr.onload = function () {
-      loadTweets(tweetsContainerElement)    
-    };
+			loadTweets(tweetsContainerElement);
+		};
 		xhr.send(data);
 		return;
 	}
@@ -165,30 +165,33 @@
 			"<button class='btn btn-success btn-sm' onclick=handleTweetActionBtn(" +
 			tweet.id +
 			"," +
-			tweet.likes + ",'like'" +
+			tweet.likes +
+			",'like'" +
 			")>" +
 			tweet.likes +
 			" Like</button>"
 		);
 	}
 
-  function UnLikeBtn(tweet) {
+	function UnLikeBtn(tweet) {
 		return (
 			"<button class='btn btn-outline-success btn-sm' onclick=handleTweetActionBtn(" +
 			tweet.id +
 			"," +
-			tweet.likes + ",'unlike'" +
+			tweet.likes +
+			",'unlike'" +
 			")>" +
 			" Unlike</button>"
 		);
 	}
 
-  function Retweet(tweet) {
+	function Retweet(tweet) {
 		return (
 			"<button class='btn btn-outline-success btn-sm' onclick=handleTweetActionBtn(" +
 			tweet.id +
 			"," +
-			tweet.likes + ",'retweet'" +
+			tweet.likes +
+			",'retweet'" +
 			")>" +
 			" Retweet</button>"
 		);
@@ -202,8 +205,8 @@
 			tweet.content +
 			"</p><div class='btn-group'>" +
 			LikeBtn(tweet) +
-      UnLikeBtn(tweet) +
-      Retweet(tweet) + 
+			UnLikeBtn(tweet) +
+			Retweet(tweet) +
 			"</div></div>";
 		return formattedTweet;
 	}
