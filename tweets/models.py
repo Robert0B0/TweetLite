@@ -26,7 +26,7 @@ class Tweet(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return self.content
+        return self.content or '__no_name__'
 
     @property
     def is_retweet(self):
