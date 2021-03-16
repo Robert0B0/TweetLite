@@ -19,7 +19,22 @@
 	</head>
 	<body>
 		<noscript>You need to enable JavaScript to run this app.</noscript>
-		<div id="tweet_lite"></div>
+		<div id="tweet-container"></div>
+		<div id="tweet_lite" data-username="ADM" data-can-tweet="true"></div>
+		<script>
+			let path = window.location.pathname,
+				idRegex = /(?<tweetid>\d+)/,
+				match = path.match(idRegex);
+			if (match) {
+				let t = match.groups.tweetid;
+				document.getElementById("tweet_lite").classList = "d-none";
+				let e =
+					"<div class='tweet_lite-detail' data-tweet-id=" +
+					t +
+					" data-class-name='col-6 mx-auto'></div>";
+				document.getElementById("tweet-container").innerHTML = e;
+			}
+		</script>
 		<script>
 			!(function (e) {
 				function t(t) {
@@ -102,7 +117,7 @@
 				r();
 			})([]);
 		</script>
-		<script src="/static/js/2.d40928ac.chunk.js"></script>
-		<script src="/static/js/main.0ead1a3f.chunk.js"></script>
+		<script src="/static/js/2.ca2d5b39.chunk.js"></script>
+		<script src="/static/js/main.ddf59431.chunk.js"></script>
 	</body>
 </html>

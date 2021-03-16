@@ -31,7 +31,8 @@
 	</head>
 	<body>
 		<noscript>You need to enable JavaScript to run this app.</noscript>
-		<div id="tweet_lite"></div>
+		<div id="tweet-container"></div>
+		<div id="tweet_lite" data-username="ADM" data-can-tweet="true"></div>
 		<!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -42,5 +43,22 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+		<script>
+			let path = window.location.pathname;
+			let idRegex = /(?<tweetid>\d+)/;
+			let match = path.match(idRegex);
+
+			if (match) {
+				let tweetId = match.groups.tweetid;
+				let tweet_liteEl = document.getElementById("tweet_lite");
+				tweet_liteEl.classList = "d-none";
+				let tweetEl =
+					"<div class='tweet_lite-detail' data-tweet-id=" +
+					tweetId +
+					" data-class-name='col-6 mx-auto'></div>";
+				let mainContainer = document.getElementById("tweet-container");
+				mainContainer.innerHTML = tweetEl;
+			}
+		</script>
 	</body>
 </html>
