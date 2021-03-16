@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # internal
     'tweets',
+    'accounts',
     # third party
     'rest_framework',
     'corsheaders',
